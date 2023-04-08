@@ -1,0 +1,31 @@
+{% extends "employee/base.html" %}
+{% block content %}
+    <div class="text-center w-50 mx-auto">
+        <form action="{% url 'employees:create' %}" method="POST">
+            {% csrf_token %}
+            {% if error_message %}<p class="text-danger h3"> {{ error_message }} </p> {% endif %}
+            <div>
+                <br>
+                <p>
+                    <h3>Enter Details</h3>
+                </p>
+                <div>
+                    <p>Employee Id:</p> {{ form.eid }}
+                </div>
+                <div>
+                    <p>Employee Name:</p> {{ form.name }}
+                </div>
+                <div>
+                    <p>Employee Email:</p> {{ form.email }}
+                </div>
+                <div>
+                    <p>Employee Contact:</p> {{ form.contact }}
+                </div>
+                <div>
+                    <br>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
