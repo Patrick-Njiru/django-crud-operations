@@ -1,14 +1,15 @@
 {% extends "employee/base.html" %}
 {% block content %}
-    <a href="{% url 'employees:create' %}" class="d-block my-5 text-decoration-none text-danger">add a new employee</a>
+    <h1 class="alert alert-success">Maximus Limited Employees</h1>
     {% if employees %}
-        <ol>
+    <ol>
         {% for employee in employees %}
-            <li>
-                <a href="{% url 'employees:show' employee.id %}" class="text-decoration-none text-dark"> {{ employee.name | capfirst }}</a>  &emsp;
-                <!-- <a href="{% url 'employees:destroy' employee.id %}">delete</a> -->
-            </li>
+        <li class="my-3 d-flex justify-content-between px-1">
+            <span> {{forloop.counter}}. &nbsp;  {{ employee.name | capfirst }} </span>
+            <a href="{% url 'employees:show' employee.id %}" class="btn btn-primary">details</a>
+        </li>
         {% endfor %}
-        </ol>
+    </ol>
+    <a href="{% url 'employees:create' %}" class="d-block my-5 btn btn-danger">add a new employee</a>
     {% endif %}
 {% endblock %}

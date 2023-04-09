@@ -1,4 +1,45 @@
 {% extends "employee/base.html" %}
 {% block content %}
+    <h1 class="alert alert-success d-flex justify-content-between align-items-center mb-5"> 
+        Details For : {{ employee.name }} <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1">home</a>
+    </h1>
+    <table class="w-100">
+        <tr class="py-2 border border-dark border-3 d-flex justify-content-between px-5 align-items-center alert alert-secondary" >
+            <th class="text-uppercase text-center text-success">name</th>
+            <td class="text-dark h5"> {{ employee.name }} </td>
+            
+        </tr>
+        <tr class="py-2 border border-dark border-3 d-flex justify-content-between px-5 align-items-center alert alert-secondary" >
+            <th class="text-uppercase text-center text-success">employee id</th>
+            <td class="text-dark h5"> {{ employee.eid }} </td>
+        </tr>
+        <tr class="py-2 border border-dark border-3 d-flex justify-content-between px-5 align-items-center alert alert-secondary" >
+            <th class="text-uppercase text-center text-success">email</th>
+            <td class="text-dark h5"> {{ employee.email }} </td>
+        </tr>
+        <tr class="py-2 border border-dark border-3 d-flex justify-content-between px-5 align-items-center alert alert-secondary" >
+            <th class="text-uppercase text-center text-success">phone</th>
+            <td class="text-dark h5"> {{ employee.contact }} </td>
+        </tr>
+    </table>
+    <div class="d-flex justify-content-evenly">
+        <a href="{% url 'employees:update' employee.id %}" class="btn btn-danger">Edit</a>
+        <a href="{% url 'employees:destroy' employee.id %}" class="btn btn-danger">Delete</a>
+    </div>
 
+        <!-- Modal Trigger Button -->
+        <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</button> -->
+        
+        <!-- Modal -->
+        <!-- <div class="modal fade text-dark" id="delete" tabindex="-1" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3>Are you sure you want to delete these employee and all his details?</h3>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <a href="{% url 'employees:destroy' employee.id %}" class="btn btn-danger">Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 {% endblock %}
