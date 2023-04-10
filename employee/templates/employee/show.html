@@ -1,8 +1,8 @@
 {% extends "employee/base.html" %}
 {% block content %}
     <h1 class="alert alert-secondary d-flex justify-content-between align-items-center mb-5"> 
-        Details For : {{ employee.name }} 
-        <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1">back</a>
+       <span> Details For : <i class="fw-bold"> {{ employee.name }} </i> </span> 
+        <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1 fw-bold">back</a>
     </h1>
     {% if messages %}
         {% for message in messages %} <h4 class="alert alert-warning text-center text-uppercase"> {{ message }} </h4> {% endfor %}
@@ -28,22 +28,21 @@
     </table>
     <div class="d-flex justify-content-evenly">
         <a href="{% url 'employees:update' employee.id %}" class="btn btn-danger">Edit</a>
-        <a href="{% url 'employees:destroy' employee.id %}" class="btn btn-danger">Delete</a>
-    </div>
-
         <!-- Modal Trigger Button -->
-        <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</button> -->
-        
-        <!-- Modal -->
-        <!-- <div class="modal fade text-dark" id="delete" tabindex="-1" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h3>Are you sure you want to delete these employee and all his details?</h3>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        <a href="{% url 'employees:destroy' employee.id %}" class="btn btn-danger">Yes</a>
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade text-dark" id="delete" tabindex="-1" >
+        <div class="modal-dialog w-50 mx-auto">
+            <div class="modal-content">
+                <div class="modal-body alert alert-warning text-center">
+                    <h3>Are you sure you want to delete <em class="fw-bold">{{ employee.name }}</em>'s details?</h3>
+                    <div class="d-flex justify-content-around mt-5">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a href="{% url 'employees:destroy' employee.id %}" class="btn btn-danger">Proceed</a>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
+    </div>
 {% endblock %}

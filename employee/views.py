@@ -20,10 +20,8 @@ def create(request):
             form.save()
             return HttpResponseRedirect(reverse("employees:index"))
         else:
-            errors = form.errors.values
             messages.info(request, "Failed to Save!") 
-            context = { 'form': form, 'errors': errors }
-            return render(request, 'employee/create.html', context)
+            return render(request, 'employee/create.html', {'form': form})
     else:
         form = EmployeeForm()
     return render(request, 'employee/create.html', {'form': form})
@@ -36,9 +34,8 @@ def update(request, id):
             form.save()
             return HttpResponseRedirect(reverse("employees:show", args=(id,)))
         else:
-            errors = form.errors.values
             messages.info(request, "Failed to Update!")
-            context = { 'employee': employee, 'form': form, 'errors': errors }
+            context = { 'employee': employee, 'form': form }
             return render(request, 'employee/update.html', context)
     else:
         form = EmployeeForm(instance=employee)

@@ -1,11 +1,11 @@
 {% extends "employee/base.html" %}
 {% block content %}
     <h1 class="alert alert-secondary d-flex justify-content-between align-items-center mb-5"> 
-        Add A New Employee 
-        <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1">back</a>
+        New Employee 
+        <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1 fw-bold">back</a>
     </h1>
     {% for message in messages %} <h4 class="alert alert-warning text-center text-uppercase"> {{ message }} </h4> {% endfor %}
-    {% for error in errors %}
+    {% for error in form.errors.values %}
         <div class="alert alert-warning text-center text-decoration-none text-uppercase"> {{ error }} </div>
     {% endfor %}
     <div class="text-center w-100 mx-auto">
