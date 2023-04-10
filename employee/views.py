@@ -17,12 +17,13 @@ def create(request):
     if request.method == 'POST': 
         form = EmployeeForm(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-            except:
-                # fix error display
-                return render(request, 'employee/create.html', {"error": "Error Encountered"})
+            form.save()
             return HttpResponseRedirect(reverse("employees:index"))
+        else:
+            errors = form.errors.values
+            messages.info(request, "Failed to Save!") 
+            context = { 'form': form, 'errors': errors }
+            return render(request, 'employee/create.html', context)
     else:
         form = EmployeeForm()
     return render(request, 'employee/create.html', {'form': form})
@@ -32,15 +33,17 @@ def update(request, id):
     if request.method == 'POST':
         form = EmployeeForm(request.POST,  instance=employee)
         if form.is_valid():
-            try:
-                form.save()
-            except:
-                # fix error display
-                return render(request, 'employee/update.html', {"error": "Error Encountered", 'employee': employee, 'form': form})
+            form.save()
             return HttpResponseRedirect(reverse("employees:show", args=(id,)))
+        else:
+            errors = form.errors.values
+            messages.info(request, "Failed to Update!")
+            context = { 'employee': employee, 'form': form, 'errors': errors }
+            return render(request, 'employee/update.html', context)
     else:
         form = EmployeeForm(instance=employee)
-    return render(request, 'employee/update.html', {'form': form, 'employee': employee})
+        context = { 'form': form, 'employee': employee }
+    return render(request, 'employee/update.html', context)
 
 def destroy(request, id):
     employee = get_object_or_404(Employee,id=id)

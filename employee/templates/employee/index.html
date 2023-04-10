@@ -1,6 +1,10 @@
 {% extends "employee/base.html" %}
 {% block content %}
-    <h1 class="alert alert-success">Maximus Limited Employees</h1>
+    <h1 class="alert alert-secondary mb-5">Maximus Limited Employees</h1>
+    {% if messages %}
+        {% for message in messages %} <h4 class="alert alert-warning text-center text-uppercase"> {{ message }} </h4> {% endfor %}
+    {% endif %}
+    
     {% if employees %}
     <ol>
         {% for employee in employees %}
