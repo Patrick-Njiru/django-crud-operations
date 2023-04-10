@@ -1,7 +1,8 @@
 {% extends "employee/base.html" %}
 {% block content %}
     <h1 class="alert alert-success d-flex justify-content-between align-items-center mb-5"> 
-        Details For : {{ employee.name }} <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1">home</a>
+        Details For : {{ employee.name }} 
+        <a href="{% url 'employees:index' %}" class="link link-danger h4 text-decoration-none mt-1">back</a>
     </h1>
     <table class="w-100">
         <tr class="py-2 border border-dark border-3 d-flex justify-content-between px-5 align-items-center alert alert-secondary" >

@@ -1,4 +1,31 @@
 {% extends "employee/base.html" %}
 {% block content %}
-
+    <h1 class="alert alert-success d-flex justify-content-between align-items-center mb-5"> 
+        Update {{ employee.name }}'s Details 
+        <a href="{% url 'employees:show' employee.id %}" class="link link-danger h4 text-decoration-none mt-1">back</a>
+    </h1>
+    <div class="text-center w-100 mx-auto">
+        <form action="{% url 'employees:update' employee.id %}" method="POST" class="p-3 rounded bg-secondary">
+            {% csrf_token %}
+            {% if error %} <p class="alert alert-warning h4"> {{ error }} </p> {% endif %}
+            <div>
+                <h2 class="text-light my-5">Update Details</h2>
+                <div class="my-5 h4">
+                    <p class="text-light"> Name:</p> {{ form.name }}
+                </div> 
+                <div class="my-5 h4">
+                    <p class="text-light">Company Id:</p> {{ form.eid }}
+                </div>
+                <div class="my-5 h4">
+                    <p class="text-light">Email:</p> {{ form.email }}
+                </div>
+                <div class="my-5 h4">
+                    <p class="text-light">Contact:</p> {{ form.contact }}
+                </div>
+                <div class="my-5">
+                    <button type="submit" class="btn btn-danger">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

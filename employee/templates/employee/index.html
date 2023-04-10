@@ -4,12 +4,12 @@
     {% if employees %}
     <ol>
         {% for employee in employees %}
-        <li class="my-3 d-flex justify-content-between px-1">
-            <span> {{forloop.counter}}. &nbsp;  {{ employee.name | capfirst }} </span>
+        <li class="my-3 d-flex justify-content-between pe-3">
+            <span class="h3"> {{forloop.counter}}. &nbsp;  {{ employee.name | capfirst }} </span>
             <a href="{% url 'employees:show' employee.id %}" class="btn btn-primary">details</a>
         </li>
         {% endfor %}
     </ol>
-    <a href="{% url 'employees:create' %}" class="d-block my-5 btn btn-danger">add a new employee</a>
+    <a href="{% url 'employees:create' %}" class="d-block my-5 btn btn-danger text-capitalize">add new employee</a>
     {% endif %}
 {% endblock %}
